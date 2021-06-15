@@ -1,0 +1,4 @@
+[submodule "TaotaoBlog/public"]
+	path = TaotaoBlog/public
+	url = https://github.com/JasonTan-code/jasontan-code.github.io.git
+	branch = main
