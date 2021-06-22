@@ -99,7 +99,7 @@ $$
 \underset{\lambda}{\mathrm{argmax}} (L( \lambda | data))
 $$
 
-Obviously, you can take the derivative of the likelihood function to find the maximum value, but this is beyond the scope of this blog. I drew a graph to show you the relationship between $\lambda$ and $L( \lambda | data)$
+Obviously, you can take the derivative of the likelihood function to find the maximum value, but this is beyond the scope of this blog. However, if you are interested, please check the appendix. I drew a graph to show you the relationship between $\lambda$ and $L( \lambda | data)$
 
 ![](/images/MLE/MLE.png)
 
@@ -119,11 +119,68 @@ In summary, when we observed a set of data $[5,3,4,6]$ and we believed our data 
 
 &nbsp;  
 &nbsp; 
-&nbsp;  
-&nbsp; 
+
 
 
 
 That's the end of this blog. Thanks for reading. 
+
+
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp; 
+
+*****
+
+## Appendix
+
+
+We have the likelihood function: 
+
+$$
+L(\lambda | data) = \frac{\lambda^5 e^{- \lambda}}{5 !} \times \frac{\lambda^3 e^{- \lambda}}{3 !} \times \frac{\lambda^4 e^{- \lambda}}{4 !} \times \frac{\lambda^6 e^{- \lambda}}{6 !}
+$$
+
+Let $$g(\lambda) = log(L(\lambda | data))$$
+
+Adding $log$ wouldn't change the place where the function reach its peak. Therefore, we can just find the $\lambda$ that maximizes $g(\lambda)$.  
+
+
+After applying logarithm, we have 
+$$
+g(\lambda) = log(\frac{\lambda^5 e^{- \lambda}}{5 !} \times \frac{\lambda^3 e^{- \lambda}}{3 !} \times \frac{\lambda^4 e^{- \lambda}}{4 !} \times \frac{\lambda^6 e^{- \lambda}}{6 !})
+$$
+
+Since logarithm covert product to summation, we have: 
+
+$$
+g(\lambda) = [log(\lambda ^5) - \lambda - log(5!) ]+ [log(\lambda ^3) - \lambda - log(3!)] \\\\\\ + [log(\lambda ^4) - \lambda - log(4!)]+[log(\lambda ^6) - \lambda - log(6!)]
+$$
+
+We then take the derivative of $g(\lambda)$:
+
+$$
+g(\lambda)' = \frac{5}{\lambda} - 1 + \frac{3}{\lambda} - 1  + \frac{4}{\lambda} - 1  +\frac{6}{\lambda} - 1 
+$$
+
+
+Let $g(\lambda)' = 0$, we have: 
+
+$$
+\frac{5}{\lambda} - 1 + \frac{3}{\lambda} - 1  + \frac{4}{\lambda} - 1  +\frac{6}{\lambda} - 1  = 0
+$$
+
+Solve $\lambda$, we have:
+
+$$
+\lambda = 4.5
+$$
+
+
+
+
+
+
 
 

@@ -6,9 +6,9 @@ resourceDir = "../resources"
 
 DefaultContentLanguage = "en"
 SectionPagesMenu = "main"
-Paginate = 5 # this is set low for demonstrating with dummy content. Set to a higher number
+Paginate = 6 # this is set low for demonstrating with dummy content. Set to a higher number
 googleAnalytics = ""
-enableRobotsTXT = true
+enableRobotsTXT = false
 
 [languages]
   [languages.en]
@@ -17,11 +17,12 @@ enableRobotsTXT = true
     contentDir = "content/en"
 
 [sitemap]
-  changefreq = "monthly"
+  changefreq = "weekly"
   priority = 0.5
   filename = "sitemap.xml"
 
 [params]
+  show_reading_time = true
   favicon = ""
   site_logo = ""
   description = "Taotao's personal blog"
