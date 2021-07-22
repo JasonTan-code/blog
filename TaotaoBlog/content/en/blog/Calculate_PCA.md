@@ -34,7 +34,7 @@ $$
 >
 > Let's say you have a vector $\vec{v} =  [1, 2,3 ]$. To calculate the variance, there are two steps:
 >
-> * Calculate mean: $\vec{v} = \frac{(1 + 2 + 3)}{3 } = 2$
+> * Calculate mean: $\bar v = \frac{(1 + 2 + 3)}{3 } = 2$
 > * Calculate variance: $s^2 = \frac{(1 - 2)^2 + (2 - 2)^2 + (3 - 2)^2}{3 -1} = 1$
 
 &nbsp;  
@@ -292,6 +292,37 @@ In summary, eigenvalue tells you how much variance captured by its associated PC
 
 That's the end of this post. Thanks for reading!
 
+
+
+&nbsp; 
+&nbsp;  
+&nbsp; 
+&nbsp; 
+&nbsp;  
+&nbsp; 
+
+
+{{< rawhtml >}}
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://taotaotancomments.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{{< /rawhtml >}}
 
 
 

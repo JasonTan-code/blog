@@ -3,12 +3,12 @@ date: 2021-06-14T10:58:08-04:00
 description: "Cool Monte Carlo method"
 tags: ["Monte Carlo", "Sampling"]
 mathjax: true
-title: "But how to draw samples from a strange distribution?"
+title: "But how to draw samples from a generic distribution?"
 ---
 
-In this post, I am going to show you two methods to draw samples from a "strange" distribution.  
+In this post, I am going to show you two methods to draw samples from a generic distribution.  
 
-But before we get started, we should define what do I mean "strange" distribution
+But before we get started, we should define what do I mean generic distribution. Here is one example:
 
 
 $$
@@ -22,13 +22,16 @@ $$
 \end{equation}
 $$  
 
+
 First, let's take a look at the probability density function (pdf):  
 &nbsp;  
 
 ![pdf](/images/Monte_Carlo/pdf2.png)
 &nbsp;  
 
-### Remember, our goal is to draw samples from a non-typical distribution (no Gaussian, no Poisson, etc...)
+Obviously, this is not any type of distribution you have learned before (no Gaussian, no Poisson, no uniform etc), and therefore, you wouldn't be able to use build-in functions to draw samples from (in R programming language, we have `rnorm()`, `rpois()`, `runif()`). 
+
+Despite the limitations, there are still ways to draw samples from, which I will discuss below:
 
 &nbsp;  
 &nbsp; 
@@ -95,22 +98,22 @@ The steps I described above are pretty standard and boring, but here comes to th
  >  #### Sampling
  > We draw sample y from a uniform distribution, then raise this sample to the power of $2/3$, and we will get a customized sample generator!
  >
- > Let $y \sim \text{Unif }(0 ,1)$, then $x \sim \text{Strange dist}$
+ > Let $y \sim \text{Unif }(0 ,1)$, then $x \sim \text{Generic dist}$
  >
 Let's demonstrate this idea with come R code.
-```
->  Sampler <- function(n = 1){
->      y = runif(n, min = 0, max = 1)
->      x = y ^(2/3)
->      return(x)
->  }
+```r
+Sampler <- function(n = 1){
+     y = runif(n, min = 0, max = 1)
+     x = y ^(2/3)
+     return(x)
+}
 
 # draw one sample 
-> Sampler()
+Sampler()
 
 
 # draw 1000 samples
-> Sampler(1000)
+Sampler(1000)
 ```
 &nbsp; 
 
@@ -133,7 +136,7 @@ After I drew 100000 samples and plot them in a histogram, we get this.
 
 ## Method 2: accept-reject sampling.
 
-What if I tell you that you don't even need to calculate $c$, to draw samples from our "strange" distribution? 
+What if I tell you that you don't even need to calculate $c$, to draw samples from our generic distribution? 
 
 That sounds crazy, but it is do-able using a Monte Carlo technique called accept-reject sampling.
 
@@ -156,20 +159,20 @@ $$
 Here is the code:
 
 
-```
+```r
 # our collecting bag
-> accept = c()
+accept = c()
 
 # draw 100000 samples from a uniform distribution
-> samples = runif(100000, 0, 1)
+samples = runif(100000, 0, 1)
 
 # iterate all the samples
-> for (sample in samples){
->    accpt_prob = sqrt(sample)/(2 * 1)           # calculate the probability of acceptance
->     if (rbinom(n = 1, size = 1, prob = accpt_prob) == 1){                # flip a unfair coin with probability we just calculated. If head up, we accept.
->         accept = c(accept, sample)               # add the accepted samples to our bag
->     }
-> }
+for (sample in samples){
+   accpt_prob = sqrt(sample)/(2 * 1)           # calculate the probability of acceptance
+    if (rbinom(n = 1, size = 1, prob = accpt_prob) == 1){                # flip a unfair coin with probability we just calculated. If head up, we accept.
+        accept = c(accept, sample)               # add the accepted samples to our bag
+    }
+}
 ```
 
 Notice here, I chose the constant $k = 2$. We are sure that $2 \times U(0, 1)$ is always larger than our customized pdf. 
@@ -214,12 +217,6 @@ In this post, we learned two ways of drawing samples form a customized distribut
 &nbsp; 
 &nbsp;  
 &nbsp; 
-&nbsp;  
-&nbsp; 
-&nbsp;  
-&nbsp; 
-&nbsp;  
-&nbsp; 
 
 
 
@@ -228,6 +225,41 @@ In this post, we learned two ways of drawing samples form a customized distribut
 
 ritvikmath: https://www.youtube.com/watch?v=OXDqjdVVePY  
 Ben Lambert: https://www.youtube.com/watch?v=rnBbYsysPaU
+
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp; 
+
+
+
+{{< rawhtml >}}
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://taotaotancomments.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{{< /rawhtml >}}
 
 
 
